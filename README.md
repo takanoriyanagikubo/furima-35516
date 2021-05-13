@@ -2,14 +2,16 @@
 
 ## users テーブル
 
-| Column    | Type   | Options     |
-| --------- | ------ | ----------- |
-| nick_name | string | null: false |
-| email     | string | null: false |
-| password  | string | null: false |
-| name      | string | null: false |
-| name_kana | string | null: false |
-| birthday  | string | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nick_name          | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_name_kana    | string | null: false               |
+| last_name_kana     | string | null: fals                |
+| birthday           | date   | null: false               |
 
 ### Association
 
@@ -21,18 +23,17 @@
 
 ## items テーブル
 
-| Column            | Type       | Options      |
-| ----------------- | ---------- | ------------ |
-| image             | string     | null: false  |
-| item_name         | string     | null: false  |
-| description       | string     | null: false  |
-| status            | string     | null: false  |
-| deliverry_charge  | string     | null: false  |
-| area              | string     | null: false  |
-| day               | string     | null: false  |
-| price             | integer    | null: false |
-| fee               | integer    | null: false |
-| sales_profit      | integer    | null: false |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| item_name         | string     | null: false                    |
+| description       | string     | null: false                    |
+| status            | string     | null: false                    |
+| deliverry_charge  | string     | null: false                    |
+| area              | string     | null: false                    |
+| day               | string     | null: false                    |
+| price             | integer    | null: false                    |
+| fee               | integer    | null: false                    |
+| sales_profit      | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
 
 ### Association
@@ -53,25 +54,24 @@
 
 ### Association
 
-- belongs_to :buys
-- belongs_to :deliveries
+- belongs_to :user
 - belongs_to :item
-
+- has_one :buys  
 
 
 ## deliveries テーブル
 
 | Column        | Type       | Options      |
 | ------------- | ---------- | ------------ |
-| posttal_cood  | string     | null: false  |
-| perfecture    | string     | null: false  |
+| postal_cood   | string     | null: false  |
+| perfecture    | integer    | null: false  |
 | city          | string     | null: false  |
 | address       | string     | null: false  | 
 | building_name | string     |              |
 | phone_naumber | string     | null: false  |
-| user     | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :buys
-- belongs_to :users
+
+- belongs_to :user
+- belongs_to :deliveries
