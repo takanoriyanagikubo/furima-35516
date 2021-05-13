@@ -15,30 +15,27 @@
 
 ### Association
 
-- has_many :deliveries
 - has_many :items
-- has_many :buys, through:
+- has_many :buys
 
 
 
 ## items テーブル
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| item_name         | string     | null: false                    |
-| description       | string     | null: false                    |
-| status            | string     | null: false                    |
-| deliverry_charge  | string     | null: false                    |
-| area              | string     | null: false                    |
-| day               | string     | null: false                    |
-| price             | integer    | null: false                    |
-| fee               | integer    | null: false                    |
-| sales_profit      | integer    | null: false                    |
-| user              | references | null: false, foreign_key: true |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| item_name           | string     | null: false                    |
+| description         | text       | null: false                    |
+| status_id           | integer     | null: false                    |
+| deliverry_charge_id | integer      | null: false                    |
+| area_id             | integer      | null: false                    |
+| day_id              | integer      | null: false                    |
+| price               | integer     | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :buys
+- has_one :buy
 - belongs_to :users
 
 
@@ -48,7 +45,7 @@
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
 | item     | references | null: false, foreign_key: true |
-| delivery | references | null: false, foreign_key: true |
+| delivery | references | null: false                    |
 | user     | references | null: false, foreign_key: true |
 
 
@@ -58,7 +55,7 @@
 - belongs_to :item
 - has_one :buys  
 
-
+ 
 ## deliveries テーブル
 
 | Column        | Type       | Options      |
