@@ -51,16 +51,17 @@
 
 ### Association
 
-- belongs_to :deliveries
+- has_one :deliverie
 - belongs_to :item
+- belongs_to :user
 
  
 ## deliveries テーブル
 
 | Column        | Type       | Options      |
 | ------------- | ---------- | ------------ |
-| postal_cood   | string     | null: false  |
-| perfecture    | integer    | null: false  |
+| postal_code   | string     | null: false  |
+| area_id       | integer    | null: false  |
 | city          | string     | null: false  |
 | address       | string     | null: false  | 
 | building_name | string     |              |
@@ -68,6 +69,5 @@
 
 ### Association
 
-
-- belongs_to :user
+- belongs_to :buy
 - belongs_to :user
