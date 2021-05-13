@@ -26,17 +26,18 @@
 | ------------------- | ---------- | ------------------------------ |
 | item_name           | string     | null: false                    |
 | description         | text       | null: false                    |
-| status_id           | integer     | null: false                    |
-| deliverry_charge_id | integer      | null: false                    |
-| area_id             | integer      | null: false                    |
-| day_id              | integer      | null: false                    |
-| price               | integer     | null: false                    |
+| category_id         | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| deliverry_charge_id | integer    | null: false                    |
+| area_id             | integer    | null: false                    |
+| day_id              | integer    | null: false                    |
+| price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_one :buy
-- belongs_to :users
+- belongs_to :user
 
 
 
@@ -45,15 +46,13 @@
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
 | item     | references | null: false, foreign_key: true |
-| delivery | references | null: false                    |
 | user     | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :user
+- belongs_to :deliveries
 - belongs_to :item
-- has_one :buys  
 
  
 ## deliveries テーブル
@@ -71,4 +70,4 @@
 
 
 - belongs_to :user
-- belongs_to :deliveries
+- belongs_to :user
