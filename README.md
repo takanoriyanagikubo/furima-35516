@@ -51,7 +51,7 @@
 
 ### Association
 
-- has_one :deliverie
+- has_one :delivery
 - belongs_to :item
 - belongs_to :user
 
@@ -65,7 +65,7 @@
 | city          | string     | null: false  |
 | address       | string     | null: false  | 
 | building_name | string     |              |
-| phone_naumber | string     | null: false  |
+| phone_number | string     | null: false  |
 
 ### Association
 
