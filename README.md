@@ -70,4 +70,3 @@
 ### Association
 
 - belongs_to :buy
-- belongs_to :user
