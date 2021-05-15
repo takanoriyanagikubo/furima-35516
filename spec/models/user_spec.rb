@@ -81,6 +81,7 @@ RSpec.describe User, type: :model do
       it "emailに@がないと登録できない" do
         @user.email = "kkkgmail.com"
         @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
 
       it "first_name_kanaは全角（カタカナ）でなければ登録できない" do
@@ -117,6 +118,12 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = '1111qw'
         expect(@user).to be_valid
       end
+
+      it '全ての情報が登録できる' do
+        expect(@user).to be_valid
+      end
+
+
     end
       
   end
