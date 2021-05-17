@@ -63,6 +63,46 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
+
+
+      it 'カテゴリーの情報が1では登録できないこと' do
+        @item.category_id    = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it '商品の状態についての情報が1では登録できないこと' do
+        @item.category_id    = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it '配送料の負担についての情報が1では登録できないこと' do
+        @item.category_id    = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it '発送元の地域についての情報が1では登録できないこと' do
+        @item.category_id    = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it '発送元の地域についての情報が1では登録できないこと' do
+        @item.category_id    = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it '発送までの日数についての情報が1では登録できないこと' do
+        @item.category_id    = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+
+
       it '販売価格についての情報が空では登録できないこと' do
         @item.price   = ''
         @item.valid?
@@ -70,13 +110,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格が299以下では登録できないこと' do
-        @item.price    = '299'
+        @item.price    = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
       it '販売価格が10000000以上では郎録できないこと' do
-        @item.price    = '10000000'
+        @item.price    = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
@@ -86,11 +126,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-
+    end
+    context '商品登録がうまく時' do
       it '全ての情報が登録できる' do
       expect(@item).to be_valid
       end
+    end
 
     end
   end
-end
