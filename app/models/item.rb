@@ -4,11 +4,6 @@ class Item < ApplicationRecord
     validates :item_name
     validates :image
     validates :description 
-    validates :category_id
-    validates :status_id
-    validates :deliverry_charge_id
-    validates :area_id
-    validates :day_id
     validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   
 
