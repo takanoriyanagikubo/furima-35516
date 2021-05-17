@@ -10,14 +10,17 @@ class Item < ApplicationRecord
     validates :area_id
     validates :day_id
     validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
-  end
+  
 
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :status_id, numericality: { other_than: 1 } 
-  validates :deliverry_charge_id, numericality: { other_than: 1 } 
-  validates :deliverry_charge_id, numericality: { other_than: 1 } 
-  validates :area_id, numericality: { other_than: 1 } 
-  validates :day_id, numericality: { other_than: 1 } 
+  with_options inclusion: { in: 2..47 } do
+    validates :category_id
+    validates :status_id
+    validates :deliverry_charge_id 
+    validates :deliverry_charge_id
+    validates :area_id
+    validates :day_id
+  end
+end
 
   belongs_to :user
   has_one_attached :image

@@ -68,37 +68,37 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーの情報が1では登録できないこと' do
         @item.category_id    = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category is not included in the list")
       end
 
       it '商品の状態についての情報が1では登録できないこと' do
         @item.category_id    = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category is not included in the list")
       end
 
       it '配送料の負担についての情報が1では登録できないこと' do
         @item.category_id    = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category is not included in the list")
       end
 
       it '発送元の地域についての情報が1では登録できないこと' do
         @item.category_id    = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category is not included in the list")
       end
 
       it '発送元の地域についての情報が1では登録できないこと' do
         @item.category_id    = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category is not included in the list")
       end
 
       it '発送までの日数についての情報が1では登録できないこと' do
         @item.category_id    = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category is not included in the list")
       end
 
 
@@ -115,7 +115,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
-      it '販売価格が10000000以上では郎録できないこと' do
+      it '販売価格が10000000以上では登録できないこと' do
         @item.price    = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
@@ -126,6 +126,20 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
+
+      it '商品価格が半角英数字混合では出品できない' do
+        @item.price    = '123abc'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+
+      it '商品価格が半角英字のみでは出品できない' do
+        @item.price    = 'abcdef'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+
+      
     end
     context '商品登録がうまく時' do
       it '全ての情報が登録できる' do
