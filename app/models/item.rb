@@ -16,7 +16,6 @@ class Item < ApplicationRecord
     validates :category_id
     validates :status_id
     validates :deliverry_charge_id 
-    validates :deliverry_charge_id
     validates :area_id
     validates :day_id
   end
