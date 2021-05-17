@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   
-    before do
+  before do
       @user = FactoryBot.build(:user)
     end
 
-  describe '#create' do
+    describe '#create' do
       context '新規登録がうまくいかないとき' do
       it 'nick_nameが空では登録できないこと' do
-        @user.nick_name = ''
+        @user.nick_name = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Nick name can't be blank")
       end
