@@ -22,9 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])#.includes(:user)
-    #@comment = Comment.new
-    #@comments = @prototype.comment.includes(:user)
+    @item = Item.find(params[:id])
   end
 
    private
