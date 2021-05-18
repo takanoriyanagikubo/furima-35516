@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   #before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.order("created_at ASC")
+    @items = Item.all.order("created_at DESC")
     @deliveryprice = Item.includes(:deliverry_charge)
     
   end
