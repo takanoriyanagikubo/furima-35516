@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def edit_root
-    if @item.user_id == current_user.id || @item.buy.present?
+    if  @item.buy.present?
       redirect_to action: :index
     end
 end
