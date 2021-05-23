@@ -4,8 +4,6 @@ class OrdersController < ApplicationController
 
   
   def index
-    @item = Item.find(params[:item_id])
-    @items = Item.all
     @bought = Bought.new
   end
 

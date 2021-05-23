@@ -5,7 +5,7 @@ FactoryBot.define do
     area_id                  { 3 }
     city                     { "品川区" }
     address                  { Faker::Address }
-    building_name            { "" }
+    building_name            { "品川ビル" }
     phone_number             { "09012345678" }
     buy_id                   { 5 }
     token                    {"tok_abcdefghijk00000000000000000"}

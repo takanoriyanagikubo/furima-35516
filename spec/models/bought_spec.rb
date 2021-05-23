@@ -22,9 +22,9 @@ RSpec.describe Bought, type: :model do
       end
 
       it '都道府県が空では登録できないこと' do
-        @bought.city= ""
+        @bought.area_id= ""
         @bought.valid?
-        expect(@bought.errors.full_messages).to include("City can't be blank")
+        expect(@bought.errors.full_messages).to include("Area is not a number")
       end
 
       it '住所が空では登録できないこと' do
@@ -45,10 +45,28 @@ RSpec.describe Bought, type: :model do
         expect(@bought.errors.full_messages).to include("Phone number is invalid")
       end
 
-      it '市区が空では登録できないこと' do
-        @bought.area_id= ""
+      it 'user_idが空では登録できないこと' do
+        @bought.phone_number= ""
         @bought.valid?
-        expect(@bought.errors.full_messages).to include("Area is not a number")
+        expect(@bought.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'item_idが空では登録できないこと' do
+        @bought.phone_number= ""
+        @bought.valid?
+        expect(@bought.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号が英数字混合では登録できない。こと' do
+        @bought.phone_number= "0901234qwer"
+        @bought.valid?
+        expect(@bought.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '市区が空では登録できないこと' do
+        @bought.city= ""
+        @bought.valid?
+        expect(@bought.errors.full_messages).to include("City can't be blank")
       end
 
       it "tokenが空では登録できないこと" do
@@ -59,10 +77,14 @@ RSpec.describe Bought, type: :model do
 
     end
 
-
       context '新規登録がうまくいくとき' do
   
         it '全ての情報が登録できる' do
+          expect(@bought).to be_valid
+        end
+
+        it "建物名が空でも登録できる" do
+          @bought.building_name= ""
           expect(@bought).to be_valid
         end
 

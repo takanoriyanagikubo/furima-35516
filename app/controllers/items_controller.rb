@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
-  before_action :edit_root, only: [:edit]
+  before_action :edit_root, only: [:edit, :update, :destroy]
   
   
 
@@ -56,7 +56,6 @@ class ItemsController < ApplicationController
   end
 
   def edit_root
-    #@item = Item.find(params[:item_id])
     if @item.user_id == current_user.id || @item.buy.present?
       redirect_to action: :index
     end
