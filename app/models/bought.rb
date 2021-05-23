@@ -1,7 +1,6 @@
 class Bought
   include ActiveModel::Model
-  attr_accessor :postal_code, :area_id, :city, :address, :building_name, :phone_number, :item_id, :user_id, :buy_id
-  attr_accessor :token
+  attr_accessor :postal_code, :area_id, :city, :address, :building_name, :phone_number, :item_id, :user_id, :buy_id, :token
 
   with_options presence: true do
     validates :item_id
@@ -13,9 +12,9 @@ class Bought
     validates :city 
     validates :address
     validates :phone_number,format: { with: /\A\d{10,11}\z/ } 
-
+    validates :token
   end
-  validates :token, presence: true
+  
   validates :area_id, numericality: { other_than: 1 } 
 
   def save

@@ -6,14 +6,8 @@ class OrdersController < ApplicationController
   def index
     @bought = Bought.new
   end
-
-
-  #def new
-    #@bought = Bought.new
-  #end
  
   def create
-    @item = Item.find(params[:item_id])
     @bought = Bought.new(bought_params)
     if @bought.valid?
       pay_item
@@ -35,7 +29,7 @@ class OrdersController < ApplicationController
   private
 
   def bought_params
-    params.require(:bought).permit(:postal_code, :area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], buy_id: params[:buy_id], token: params[:token])
+    params.require(:bought).permit(:postal_code, :area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item

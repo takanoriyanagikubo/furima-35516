@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe Bought, type: :model do
 
      before do
-       @bought = FactoryBot.build(:bought)
+      item = FactoryBot.build(:item)
+      user = FactoryBot.build(:user)
+      @bought = FactoryBot.build(:bought, user_id: user.id, item_id: item.id)
      end
   describe '#create' do
 
@@ -39,22 +41,28 @@ RSpec.describe Bought, type: :model do
         expect(@bought.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it '電話番号は11桁以内のみでした登録できないこと' do
-        @bought.phone_number= "111111111111"
+      it '電話番号は9桁以内では登録できないこと' do
+        @bought.phone_number= "123456789"
+        @bought.valid?
+        expect(@bought.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号は12桁以上では登録できないこと' do
+        @bought.phone_number= "123456789012"
         @bought.valid?
         expect(@bought.errors.full_messages).to include("Phone number is invalid")
       end
 
       it 'user_idが空では登録できないこと' do
-        @bought.phone_number= ""
+        @bought.user_id= ""
         @bought.valid?
-        expect(@bought.errors.full_messages).to include("Phone number is invalid")
+        expect(@bought.errors.full_messages).to include("User can't be blank")
       end
 
       it 'item_idが空では登録できないこと' do
-        @bought.phone_number= ""
+        @bought.item_id= ""
         @bought.valid?
-        expect(@bought.errors.full_messages).to include("Phone number is invalid")
+        expect(@bought.errors.full_messages).to include("Item can't be blank")
       end
 
       it '電話番号が英数字混合では登録できない。こと' do
