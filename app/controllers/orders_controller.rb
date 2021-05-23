@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_index, only: [:new, :create]
+  before_action :move_to_index, only: [:create, :index]
 
   
   def index
@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
   end
 
 
-  def new
-    @bought = Bought.new
-  end
+  #def new
+    #@bought = Bought.new
+  #end
  
   def create
     @item = Item.find(params[:item_id])
@@ -28,8 +28,9 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-      if item.buy.present?
-       redirect_to action: :index
+      @item = Item.find(params[:item_id])
+      if @item.user_id == current_user.id || @item.buy.present?
+        redirect_to controller: :items
       end
   end
 

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :delivery do
+  factory :bought do
 
     postal_code              { "350-0821" }
     area_id                  { 3 }
@@ -8,8 +8,9 @@ FactoryBot.define do
     building_name            { "" }
     phone_number             { "09012345678" }
     buy_id                   { 5 }
-    # token                    {"tok_abcdefghijk00000000000000000"}
+    token                    {"tok_abcdefghijk00000000000000000"}
+    item_id                  { 5 }
+    user_id                  { 5 }
   end
 
 end
-
