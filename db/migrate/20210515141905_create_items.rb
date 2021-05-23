@@ -12,11 +12,8 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :price,               null: false
       t.references :user,             null: false, foreign_key: true
       t.timestamps
-      
-
-      # extend ActiveHash::Associations::ActiveRecordExtensions
-      # belongs_to :genre
 
     end
   end
+  
 end
