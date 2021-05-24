@@ -31,7 +31,7 @@ RSpec.describe Bought, type: :model do
       end
 
       it '都道府県が1では登録できないこと' do
-        @bought.area_id= "1"
+        @bought.area_id= 1
         @bought.valid?
         expect(@bought.errors.full_messages).to include("Area must be other than 1")
       end
