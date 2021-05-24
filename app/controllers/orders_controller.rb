@@ -19,12 +19,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def move_to_index
-      @item = Item.find(params[:item_id])
-      if @item.user_id == current_user.id || @item.buy.present?
-        redirect_to controller: :items
-      end
-  end
+
 
   private
 
@@ -40,5 +35,12 @@ class OrdersController < ApplicationController
         currency: 'jpy'
       )
   end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if @item.user_id == current_user.id || @item.buy.present?
+      redirect_to controller: :items
+    end
+end
 
 end

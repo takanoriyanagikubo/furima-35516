@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Bought, type: :model do
 
      before do
-      item = FactoryBot.build(:item)
-      user = FactoryBot.build(:user)
+      item = FactoryBot.create(:item)
+      user = FactoryBot.create(:user)
       @bought = FactoryBot.build(:bought, user_id: user.id, item_id: item.id)
+      sleep 1
      end
   describe '#create' do
 
@@ -28,6 +29,14 @@ RSpec.describe Bought, type: :model do
         @bought.valid?
         expect(@bought.errors.full_messages).to include("Area is not a number")
       end
+
+      it '都道府県が1では登録できないこと' do
+        @bought.area_id= "1"
+        @bought.valid?
+        expect(@bought.errors.full_messages).to include("Area must be other than 1")
+      end
+
+
 
       it '住所が空では登録できないこと' do
         @bought.address= ""
