@@ -7,7 +7,8 @@ class OrdersController < ApplicationController
     @bought = Bought.new
   end
  
-  def create
+  def create 
+
     @bought = Bought.new(bought_params)
     if @bought.valid?
       pay_item
